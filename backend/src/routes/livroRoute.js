@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const livroController = require('../controllers//livroController');
+const livroController = require('../controllers/livroController');
+const autenticarUsuario = require('../middlewares/authMiddleware')
 
 //Rotas do livro
 router.get('/', livroController.mostrarLivros);
-router.post('/addLivro', livroController.addLivro);
+router.post('/addLivro', autenticarUsuario, livroController.addLivro);
 
 
 module.exports = router;

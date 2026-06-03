@@ -1,6 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 
+const dotenv = require('dotenv');
+dotenv.config();
+
 const usuarioRoutes = require('./routes/usuarioRoute');
 const livroRoutes = require('./routes/livroRoute');
 
@@ -14,7 +17,7 @@ app.use('/usuarios', usuarioRoutes);
 app.use('/livros', livroRoutes);
 
 // Porta do servidor
-const porta = 3000
+const porta = process.env.PORT
 app.listen(porta, () => {
     console.log(`Servidor rodando na porta ${porta}`);
 });

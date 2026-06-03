@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import Menu from './Menu'
-import api from '../../api/api'
+import Menu from '../assets/components/Menu'
+import api from '../api/api'
 
 function Dashboard() {
   const [livros, setLivros] = useState([]);
