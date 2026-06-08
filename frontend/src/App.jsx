@@ -1,7 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
+import RotaPrivada from './assets/components/RotaPrivada'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
+import Cadastro from './pages/Cadastro'
 
 function App() {
   return (
@@ -9,7 +11,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path='/cadastro' element={<Cadastro />}/>
+
+        
+        <Route path="/dashboard" element={ <RotaPrivada><Dashboard /></RotaPrivada>} />
       </Routes>
     </BrowserRouter>
   )

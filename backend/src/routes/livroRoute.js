@@ -5,7 +5,7 @@ const livroController = require('../controllers/livroController');
 const autenticarUsuario = require('../middlewares/authMiddleware')
 
 //Rotas do livro
-router.get('/', livroController.mostrarLivros);
+router.get('/', autenticarUsuario, livroController.mostrarLivros);
 router.post('/addLivro', autenticarUsuario, livroController.addLivro);
 
 

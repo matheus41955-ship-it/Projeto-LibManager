@@ -1,3 +1,4 @@
+const { cadastroSchema } = require('../schemas/cadastroSchema')
 const bcrypt = require('bcrypt');
 const usuarioModel = require('../models/usuarioModel');
 
@@ -7,21 +8,32 @@ require('dotenv').config()
 
 async function cadastrar(req, res) {
     try {
-        const { nome, email, senha } = req.body;
+        // Validação com Zod
+        const resultado = cadastroSchema.safeParse(req.body);
 
+        if (!resultado.success) {
+            return res.status(400).json({ erro: resultado.error.errors.map(e => e.message) });
+        }
+
+        // Dados validados
+        const { nome, email, senha } = resultado.data;
+        
+        const usuarioExiste = await usuarioModel.buscarPorEmail(email);
+        if (usuarioExiste) {
+            return res.status.json({ erro: "Email já cadastrado, faça login!" });
+        }
+
+        // Criptografia da senha
         const senhaHash = await bcrypt.hash(senha, 10);
 
-        await usuarioModel.criarUsuario(
-            nome,
-            email,
-            senhaHash
-        );
-        
-        res.status(201).json({ mensagem: 'Usuário cadastrado com sucesso!' });
+        // Salvar no banco
+        await usuarioModel.criarUsuario(nome, email, senhaHash);
+
+        return res.status(201).json({ mensagem: "Usuário criado com sucesso!" });
+
     } catch (erro) {
         console.error(erro);
-
-        res.status(500).json({ erro: 'Erro ao cadastrar o usuário' });
+        res.status(500).json({ erro: 'Erro no servidor ao cadastrar o usuário' });
     }
 }
 
@@ -32,7 +44,7 @@ async function login(req, res) {
         const resultado = loginSchema.safeParse(req.body);
 
         if(!resultado.success) {
-            return res.status(400).json({ erro: resultado.error.errors[0].message })
+            return res.status(400).json({ erro: resultado.error.errors.map(e => e.message) })
         }
 
         // Dados já validados

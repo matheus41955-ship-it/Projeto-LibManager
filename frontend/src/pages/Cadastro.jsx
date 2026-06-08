@@ -1,54 +1,65 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api/api";
-import { loginSchema } from "../schemas/loginSchema";
+import cadastroSchema from "../schemas/cadastroSchema";
 
-function Login() {
+function Cadastro() {
+  const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [confSenha, setConfSenha] = useState("");
+  
   const [erro, setErro] = useState("")
+  const [sucesso, setSucesso] = useState("");
+  
   const navigate = useNavigate();
 
-  async function handleLogin(e) {
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/dashboard");
+    }
+  }, []);
+
+  async function handleCadastro(e) {
     e.preventDefault();
     setErro(""); // Limpar o erro antes de validar
 
-    if (localStorage.getItem("token")) {
-      setErro("Você já está logado!");
-      navigate("/dashboard");
-      return
+    if (senha !== confSenha) {
+        setErro('As senhas não conferem');
+        return;
     }
 
     //Validação Zod
-    const resultado = loginSchema.safeParse({ email, senha });
-
+    const resultado = cadastroSchema.safeParse({ nome, email, senha });
 
     if (!resultado.success) {
       const erros = resultado.error.flatten().fieldErrors;
 
-      const mensagem = erros.email?.[0] || erros.senha?.[0] || "Erro de validação";
+      const mensagem = erros.nome?.[0] || erros.email?.[0] || erros.senha?.[0] || "Erro de validação";
 
       setErro(mensagem);
       return;
     }
 
     try {
-      const resposta = await api.post("/usuarios/login", {
+      const resposta = await api.post("/usuarios/cadastro", {
+        nome,
         email,
         senha,
       });
 
-      if (resposta.data.token) {
-        localStorage.setItem("token", resposta.data.token);
-      }
-      navigate("/dashboard");
+      setErro("");
+      setSucesso(resposta.data.mensagem);
+
+      setTimeout(() => {
+        navigate('/login');
+      }, 1500)
 
     } catch (erro) {
-      console.log(erro.response?.data);
-
-      const mensagem = erro.response?.data?.erro || "Erro no login";
+      const mensagem = erro.response?.data?.erro || "Erro no cadastro";
 
       setErro(mensagem);
+      setSucesso(""); // limpa sucesso
     }
   }
 
@@ -58,20 +69,35 @@ function Login() {
 
         <div className="mb-10 text-center">
           <h1 className="mt-4 text-4xl font-bold text-blue-500">LibManager</h1>
-          <p className="text-gray-500 text-sm">Login de bibliotecário</p>
+          <p className="text-gray-500 text-sm">Cadastrar novo bibliotecário</p>
         </div>
 
-        <form className="space-y-6" onSubmit={handleLogin}>
+        <form className="space-y-6" onSubmit={handleCadastro}>
 
           {erro && (<p className="text-red-500 text-sm text-center">{erro}</p>)}
+          {sucesso && (<p className="text-green-600 text-sm text-center">{sucesso}</p>)}
+          
+          <div>
+            <label htmlFor="nome" className="block text-sm font-medium text-slate-300 mb-2">
+                Nome
+            </label>
+
+            <input 
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+            id="nome"
+            type="text"
+            placeholder="Digite aqui seu nome"
+            className="w-full rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-slate-100 placeholder:text-slate-500 outline-none transition focus:border-blue-400"
+            required
+            />
+          </div>
 
           <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-slate-300 mb-2"
-            >
+            <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
               E-mail
             </label>
+
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -101,6 +127,18 @@ function Login() {
             />
           </div>
 
+          <div>
+            <label htmlFor="confSenha" className="block text-sm font-medium text-slate-300 mb-1">Confirmar Senha</label>
+            <input
+                value={confSenha}
+                onChange={(e) => setConfSenha(e.target.value)}
+                id="confSenha"
+                type="password"
+                placeholder="Confirmar Senha"
+                className="w-full rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-slate-100 placeholder:text-slate-500 outline-none transition focus:border-blue-400" 
+            />
+          </div>
+
           <div className="flex items-center justify-center text-sm text-slate-400">
             <button
               type="button"
@@ -114,7 +152,7 @@ function Login() {
             type="submit"
             className="w-full rounded-3xl bg-blue-500 px-5 py-3 text-base font-semibold text-slate-900 transition hover:bg-blue-400"
           >
-            Entrar
+            Cadastrar
           </button>
         </form>
       </div>
@@ -122,4 +160,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Cadastro;

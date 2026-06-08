@@ -2,7 +2,8 @@ const db = require('../config/bd');
 
 async function listarLivros() {
     const [rows] = await db.execute(`
-        SELECT 
+        SELECT
+            l.id_livro,
             l.titulo,
             l.autor,
             l.ano_publicacao,
