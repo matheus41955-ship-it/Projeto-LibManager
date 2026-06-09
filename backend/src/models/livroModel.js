@@ -31,6 +31,14 @@ async function listarLivros() {
 async function cadastrarLivro(titulo, autor, editora, ano_publicacao, id_categoria) {
     const sql = 'INSERT INTO livros (titulo, autor, editora, ano_publicacao, id_categoria) VALUES (?, ?, ?, ?, ?)'
     const [resultado] = await db.execute(sql, [titulo, autor, editora, ano_publicacao, id_categoria]);
+    
+    return resultado;
 }
 
-module.exports = { listarLivros, cadastrarLivro }
+async function listarCategorias() {
+    const [rows] = await db.execute("SELECT id_categoria, nome FROM categorias ORDER BY id_categoria ASC");
+
+    return rows;
+}
+
+module.exports = { listarLivros, cadastrarLivro, listarCategorias }

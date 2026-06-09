@@ -27,4 +27,15 @@ async function addLivro(req, res) {
     }
 }
 
-module.exports = { mostrarLivros, addLivro };
+async function buscarCategorias(req, res) {
+    try {
+        const categorias = await livroModel.listarCategorias();
+        res.json(categorias);
+    } catch (erro) {
+        console.error(erro);
+
+        res.status(500).json({ erro: "Erro ao buscar categorias" })
+    }
+}
+
+module.exports = { mostrarLivros, addLivro, buscarCategorias };

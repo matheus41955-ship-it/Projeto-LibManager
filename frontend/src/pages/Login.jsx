@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import api from "../api/api";
 import { loginSchema } from "../schemas/loginSchema";
 
@@ -101,19 +101,13 @@ function Login() {
             />
           </div>
 
-          <div className="flex items-center justify-center text-sm text-slate-400">
-            <button
-              type="button"
-              className="text-blue-300 hover:text-blue-200 transition"
-            >
-              Esqueceu a senha?
-            </button>
+          <div className="flex flex-col items-center justify-center text-sm text-slate-400">
+            <NavLink to="/login" className="text-blue-300 hover:text-blue-200 cursor-pointer transition">Esqueceu sua senha? <strong>Recuperar senha</strong></NavLink>
+
+            <NavLink to="/cadastro" className="text-blue-300 hover:text-blue-200 cursor-pointer transition">Não possui cadastro? <strong>Fazer Cadastro</strong></NavLink>
           </div>
 
-          <button
-            type="submit"
-            className="w-full rounded-3xl bg-blue-500 px-5 py-3 text-base font-semibold text-slate-900 transition hover:bg-blue-400"
-          >
+          <button type="submit" className="w-full rounded-3xl bg-blue-500 px-5 py-3 text-base font-semibold text-slate-900 transition hover:bg-blue-400">
             Entrar
           </button>
         </form>

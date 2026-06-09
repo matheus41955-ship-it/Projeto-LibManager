@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import api from "../api/api";
 import cadastroSchema from "../schemas/cadastroSchema";
 
@@ -140,12 +140,7 @@ function Cadastro() {
           </div>
 
           <div className="flex items-center justify-center text-sm text-slate-400">
-            <button
-              type="button"
-              className="text-blue-300 hover:text-blue-200 transition"
-            >
-              Esqueceu a senha?
-            </button>
+            <NavLink to="/login" className="text-blue-300 hover:text-blue-200 cursor-pointer transition">Já possui cadastro? <strong>Faça login</strong></NavLink>
           </div>
 
           <button

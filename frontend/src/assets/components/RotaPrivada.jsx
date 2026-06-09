@@ -1,10 +1,10 @@
-import AcessoNegado from "../../pages/AcessoNegado";
+import { Navigate } from "react-router-dom";
 
 function RotaPrivada({ children }) {
     const token = localStorage.getItem("token");
 
     if (!token) {
-        return <AcessoNegado />;
+        return <Navigate to="/login" replace />;
     }
 
     return children;
