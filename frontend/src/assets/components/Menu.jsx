@@ -17,8 +17,9 @@ function Menu() {
 
         <NavLink to="/dashboard" className={({ isActive }) => `${styleButton} ${isActive ? "text-pink-400" : "text-gray-400 hover:text-pink-400"}`}>Dashboard</NavLink>
         <NavLink to="/novo-livro" className={({ isActive }) => `${styleButton} ${isActive ? "text-pink-400" : "text-gray-400 hover:text-pink-400"}`}>Novo Livro</NavLink>
+        <NavLink to="/leitores" className={({ isActive }) => `${styleButton} ${isActive ? "text-pink-400" : "text-gray-400 hover:text-pink-400"}`}>Gerenciar Leitores</NavLink>
 
-        <button onClick={Logout} className="rounded-2xl bg-blue-600 text-white shadow-2xl transition-all hover:scale-110 hover:bg-blue-700">Sair</button>
+        <button onClick={Logout} className="rounded-2xl bg-blue-600 text-white shadow-2xl transition-all cursor-pointer hover:bg-blue-700">Sair</button>
       </nav>
     </aside>
   )

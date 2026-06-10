@@ -42,6 +42,9 @@ function NovoLivro() {
             setErro("");
             console.log(resposta.data);
             setSucesso(resposta.data.mensagem);
+            setTimeout(() => {
+                setSucesso("");
+            }, 2500) // 2,5s pra mensagem sumir
 
         } catch (erro) {
             const mensagem = erro.response?.data?.erro || "Erro ao cadastrar livro";
@@ -66,7 +69,7 @@ function NovoLivro() {
                     </div>
                     <form onSubmit={cadastrarLivro}>
 
-                        <label htmlFor="livro" className="block font-medium text-slate-200 mb-1">Título do livro:</label>
+                        <label htmlFor="titulo" className="block font-medium text-slate-200 mb-1">Título do livro:</label>
                         <input id="titulo" value={titulo} onChange={(e) => setTitulo(e.target.value)} name="livro" type="text" placeholder="Coloque o título do livro aqui" required className="w-full rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-slate-100 placeholder:text-slate-500 outline-none transition mb-6" />
                         
                         <label htmlFor="autor" className="block font-medium text-slate-200 mb-1">Autor:</label>
@@ -89,7 +92,7 @@ function NovoLivro() {
                         <label htmlFor="publicacao" className="block font-medium text-slate-200 mb-1">Ano de publicação:</label>
                         <input id="publicacao" value={ano} onChange={(e) => setAno(e.target.value)} name="publicacao" type="number" placeholder="Coloque o ano de publicação" required className="w-full rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-slate-100 placeholder:text-slate-500 outline-none transition mb-6" />
                         <div className="flex justify-center">
-                        <button type="submit" className="bg-blue-600 px-4 py-2 rounded">Enviar</button>
+                        <button type="submit" className="bg-blue-600 px-4 py-2 rounded cursor-pointer transition-colors hover:bg-blue-700">Enviar</button>
                         </div>
                     </form>
                 </div>

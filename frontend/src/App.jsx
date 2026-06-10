@@ -6,6 +6,8 @@ import Cadastro from './pages/Cadastro'
 
 import Dashboard from './pages/Dashboard'
 import NovoLivro from './pages/NovoLivro'
+import ListaLeitores from './pages/ListaLeitores'
+import AdicionarLeitor from './pages/AdicionarLeitor'
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         {/* Telas após o usuário estar autenticado */}
         <Route path="/dashboard" element={ <RotaPrivada><Dashboard /></RotaPrivada>} />
         <Route path='/novo-livro' element={ <RotaPrivada><NovoLivro /></RotaPrivada> } />
+        <Route path='/leitores' element={ <RotaPrivada><ListaLeitores /></RotaPrivada> } />
+        <Route path='/novo-leitor' element={ <RotaPrivada><AdicionarLeitor /></RotaPrivada> } />
       </Routes>
     </BrowserRouter>
   )

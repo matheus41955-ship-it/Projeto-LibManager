@@ -13,9 +13,6 @@ async function mostrarLivros(req, res) {
 
 async function addLivro(req, res) {
     try {
-        console.log(req.body)
-
-
         const { titulo, autor, editora, ano_publicacao, id_categoria } = req.body
         await livroModel.cadastrarLivro(titulo, autor, editora, ano_publicacao, id_categoria);
 
