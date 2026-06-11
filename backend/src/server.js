@@ -7,6 +7,7 @@ dotenv.config();
 const usuarioRoutes = require('./routes/usuarioRoute');
 const livroRoutes = require('./routes/livroRoute');
 const leitorRoutes = require('./routes/leitorRoutes');
+const emprestimoRoutes = require('./routes/emprestimoRoutes');
 
 const app = express();
 app.use(express.json());
@@ -17,6 +18,7 @@ app.use(cors());
 app.use('/usuarios', usuarioRoutes);
 app.use('/livros', livroRoutes);
 app.use('/leitores', leitorRoutes);
+app.use('/emprestimos', emprestimoRoutes)
 
 // Porta do servidor
 const porta = process.env.PORT

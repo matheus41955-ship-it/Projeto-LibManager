@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard'
 import NovoLivro from './pages/NovoLivro'
 import ListaLeitores from './pages/ListaLeitores'
 import AdicionarLeitor from './pages/AdicionarLeitor'
+import AtribuirEmprestimo from './pages/AtribuirEmprestimo'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='/novo-livro' element={ <RotaPrivada><NovoLivro /></RotaPrivada> } />
         <Route path='/leitores' element={ <RotaPrivada><ListaLeitores /></RotaPrivada> } />
         <Route path='/novo-leitor' element={ <RotaPrivada><AdicionarLeitor /></RotaPrivada> } />
+        <Route path='/emprestimo' element={ <RotaPrivada><AtribuirEmprestimo /></RotaPrivada> }></Route>
       </Routes>
     </BrowserRouter>
   )

@@ -35,10 +35,15 @@ async function cadastrarLivro(titulo, autor, editora, ano_publicacao, id_categor
     return resultado;
 }
 
+async function buscarLivros() {
+    const [rows] = await db.execute("SELECT id_livro, titulo FROM livros ORDER BY id_livro ASC");
+    return rows;
+}
+
 async function listarCategorias() {
     const [rows] = await db.execute("SELECT id_categoria, nome FROM categorias ORDER BY id_categoria ASC");
 
     return rows;
 }
 
-module.exports = { listarLivros, cadastrarLivro, listarCategorias }
+module.exports = { listarLivros, cadastrarLivro, buscarLivros, listarCategorias }

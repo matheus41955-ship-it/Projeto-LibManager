@@ -80,7 +80,7 @@ function NovoLivro() {
 
                         <label htmlFor="categoria" className="block font-medium text-slate-200 mb-1">Categoria:</label>
                         <select id="categoria" value={categoria} onChange={(e) => setCategoria(e.target.value)} name="categoria" className="w-full rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-slate-100 placeholder:text-slate-500 outline-none transition mb-6">
-                            <option value="#" className="bg-slate-900">Selecionar Categoria</option>
+                            <option value="" className="bg-slate-900">Selecionar Categoria</option>
                             
                             {categorias.map((cat) => (
                                 <option key={cat.id_categoria} value={cat.id_categoria}>

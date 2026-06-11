@@ -35,4 +35,14 @@ async function buscarCategorias(req, res) {
     }
 }
 
-module.exports = { mostrarLivros, addLivro, buscarCategorias };
+async function buscarLivros(req, res) { // Esse NÃO é o do dashboard, é pra mostrar o livro na opção de empréstimo
+    try {
+        const livros = await livroModel.buscarLivros();
+        res.json(livros);
+    } catch (erro) {
+        console.error(erro);
+        res.status(500).json({ erro: 'Não foi possivel buscar os livros' })
+    }
+}
+
+module.exports = { mostrarLivros, addLivro, buscarCategorias, buscarLivros };

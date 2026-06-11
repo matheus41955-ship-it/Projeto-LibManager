@@ -15,9 +15,10 @@ function Menu() {
       <nav className="flex flex-col gap-4 p-6">
         <h1 className="text-blue-500 text-4xl text-center mb-10">LibManager</h1>
 
-        <NavLink to="/dashboard" className={({ isActive }) => `${styleButton} ${isActive ? "text-pink-400" : "text-gray-400 hover:text-pink-400"}`}>Dashboard</NavLink>
-        <NavLink to="/novo-livro" className={({ isActive }) => `${styleButton} ${isActive ? "text-pink-400" : "text-gray-400 hover:text-pink-400"}`}>Novo Livro</NavLink>
-        <NavLink to="/leitores" className={({ isActive }) => `${styleButton} ${isActive ? "text-pink-400" : "text-gray-400 hover:text-pink-400"}`}>Gerenciar Leitores</NavLink>
+        <NavLink to="/dashboard" className={({ isActive }) => `${styleButton} ${isActive ? "text-pink-400" : "text-gray-400 hover:text-pink-400"}`}>— Dashboard</NavLink>
+        <NavLink to="/novo-livro" className={({ isActive }) => `${styleButton} ${isActive ? "text-pink-400" : "text-gray-400 hover:text-pink-400"}`}>— Novo Livro</NavLink>
+        <NavLink to="/leitores" className={({ isActive }) => `${styleButton} ${isActive ? "text-pink-400" : "text-gray-400 hover:text-pink-400"}`}>— Gerenciar Leitores</NavLink>
+        <NavLink to="/emprestimo" className={({ isActive }) => `${styleButton} ${isActive ? "text-pink-400" : "text-gray-400 hover:text-pink-400"}`}>— Atribuir Empréstimo</NavLink>
 
         <button onClick={Logout} className="rounded-2xl bg-blue-600 text-white shadow-2xl transition-all cursor-pointer hover:bg-blue-700">Sair</button>
       </nav>
