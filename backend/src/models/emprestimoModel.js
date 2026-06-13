@@ -14,4 +14,17 @@ async function livroEstaEmprestado(id_livro) {
     return rows.length > 0;
 }
 
-module.exports = { addEmprestimo, livroEstaEmprestado }
+
+async function buscarEmprestimos(id_leitor) {
+    const sql = 'SELECT e.id_emprestimo, l.titulo FROM emprestimos e INNER JOIN livros l ON l.id_livro = e.id_livro WHERE e.id_leitor = ? AND e.data_devolucao IS NULL';
+
+    const [rows] = await db.execute(sql, [id_leitor]);
+    return rows;
+}
+
+async function devolverLivro(id_emprestimo) {
+    const sql = 'UPDATE emprestimos SET data_devolucao = CURDATE() WHERE id_emprestimo = ?'
+    await db.execute(sql, [id_emprestimo]);
+}
+
+module.exports = { addEmprestimo, livroEstaEmprestado, buscarEmprestimos, devolverLivro }

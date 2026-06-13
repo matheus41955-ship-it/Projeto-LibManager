@@ -42,4 +42,33 @@ async function emprestar(req, res) {
     }
 }
 
-module.exports = { emprestar }
+
+async function EmprestimosLeitor(req, res) {
+    try {
+        const { id_leitor } = req.params;
+
+        if (!id_leitor) {
+            return res.status(400).json({ erro: 'ID do leitor é obrigatório.' });
+        }
+
+        const resultado = await emprestimoModel.buscarEmprestimos(id_leitor);
+        return res.json(resultado);
+    } catch (erro) {
+        console.error(erro);
+        return res.status(500).json({ erro: 'Erro ao buscar livros emprestados' });
+    }
+}
+
+async function devolverLivro(req, res) {
+    try {
+        const { id_emprestimo } = req.params;
+        await emprestimoModel.devolverLivro(id_emprestimo);
+
+        return res.status(201).json({ mensagem: "Livro devolvido com sucesso!" });
+    } catch (erro) {
+        console.error(erro);
+        return res.status(500).json({ erro: 'Erro ao devolver livro.' })
+    }
+}
+
+module.exports = { emprestar, EmprestimosLeitor, devolverLivro }

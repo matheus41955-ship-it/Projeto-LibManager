@@ -43,7 +43,8 @@ CREATE TABLE emprestimos (
     id_livro INT NOT NULL,
     
     FOREIGN KEY (id_leitor)
-		REFERENCES leitores(id_leitor),
+		REFERENCES leitores(id_leitor)
+		ON DELETE CASCADE,
         
 	FOREIGN KEY (id_livro)
 		REFERENCES livros(id_livro)

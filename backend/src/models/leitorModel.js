@@ -51,7 +51,7 @@ async function cadastrarLeitor(nome, email, telefone) {
 }
 
 async function excluirLeitor(id) {
-    const sql = 'DELETE FROM leitores WHERE id_leitor = ?'
+    const sql = 'DELETE FROM leitores WHERE id_leitor = ?';
     const [resultado] = await db.execute(sql, [id]);
 
     return resultado;

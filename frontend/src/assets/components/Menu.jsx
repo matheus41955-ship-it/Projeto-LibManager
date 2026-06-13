@@ -19,6 +19,7 @@ function Menu() {
         <NavLink to="/novo-livro" className={({ isActive }) => `${styleButton} ${isActive ? "text-pink-400" : "text-gray-400 hover:text-pink-400"}`}>— Novo Livro</NavLink>
         <NavLink to="/leitores" className={({ isActive }) => `${styleButton} ${isActive ? "text-pink-400" : "text-gray-400 hover:text-pink-400"}`}>— Gerenciar Leitores</NavLink>
         <NavLink to="/emprestimo" className={({ isActive }) => `${styleButton} ${isActive ? "text-pink-400" : "text-gray-400 hover:text-pink-400"}`}>— Atribuir Empréstimo</NavLink>
+        <NavLink to="/devolucao" className={({ isActive }) => `${styleButton} ${isActive ? "text-pink-400" : "text-gray-400 hover:text-pink-400"}`}>— Realizar Devolução</NavLink>
 
         <button onClick={Logout} className="rounded-2xl bg-blue-600 text-white shadow-2xl transition-all cursor-pointer hover:bg-blue-700">Sair</button>
       </nav>
