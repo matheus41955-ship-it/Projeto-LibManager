@@ -24,8 +24,7 @@ Após clonar o projeto utilizando:
 ```bash
 git clone https://github.com/matheus41955-ship-it/Projeto-LibManager.git
 ```
-
-Abra um terminal GitBash e digite o seguinte código:
+Importe o schema do banco de dados no MySQL, coloque os dados de teste e abra um terminal GitBash e digite o seguinte código:
 
 ### Criar um arquivo .env
 Crie um arquivo .env na pasta raíz do backend com as seguintes informações:
