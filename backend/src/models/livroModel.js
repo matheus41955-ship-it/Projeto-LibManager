@@ -23,6 +23,7 @@ async function listarLivros() {
         FROM livros l
         LEFT JOIN categorias c 
             ON l.id_categoria = c.id_categoria
+        ORDER BY l.titulo ASC
     `);
 
     return rows;

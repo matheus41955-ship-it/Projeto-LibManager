@@ -2,6 +2,7 @@ import Menu from "../assets/components/Menu";
 import { useState } from "react";
 import api from "../api/api";
 import leitorSchema from "../schemas/leitorSchema";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function AdicionarLeitor() {
     const [nome, setNome] = useState("");
@@ -10,6 +11,8 @@ function AdicionarLeitor() {
 
     const [erro, setErro] = useState("");
     const [sucesso, setSucesso] = useState("");
+
+    const navigate = useNavigate();
 
     async function cadastrarLeitor(e) {
         e.preventDefault();
@@ -37,7 +40,8 @@ function AdicionarLeitor() {
             setSucesso(resposta.data.mensagem);
             setTimeout(() => {
                 setSucesso("");
-            }, 2500) // Mensagem de sucesso some dps de 2,5 segundos
+                navigate("/leitores");
+            }, 1500) // Mensagem de sucesso some dps de 1,5 segundo
             
 
         } catch (erro) {
