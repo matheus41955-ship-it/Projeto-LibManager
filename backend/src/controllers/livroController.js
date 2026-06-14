@@ -16,6 +16,10 @@ async function addLivro(req, res) {
         const { titulo, autor, editora, ano_publicacao, id_categoria } = req.body
         await livroModel.cadastrarLivro(titulo, autor, editora, ano_publicacao, id_categoria);
 
+        if (ano_publicacao <= 0) {
+           return res.status(400).json({ erro: 'Selecione um ano válido maior que 0.' });
+        }
+
         res.status(201).json({ mensagem: 'Livro cadastrado com sucesso!' })
     } catch (erro) {
         console.error(erro);
