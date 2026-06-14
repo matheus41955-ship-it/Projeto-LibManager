@@ -27,6 +27,20 @@ git clone https://github.com/matheus41955-ship-it/Projeto-LibManager.git
 
 Abra um terminal GitBash e digite o seguinte código:
 
+### Criar um arquivo .env
+Crie um arquivo .env na pasta raíz do backend com as seguintes informações:
+ ```bash
+PORT
+
+BD_HOST
+DB_USER
+DB_PASSWORD
+DB_PORT
+DB_NAME
+
+JWT_SECRET
+```
+
 ### Ligar o Backend
  ```bash
 cd backend/

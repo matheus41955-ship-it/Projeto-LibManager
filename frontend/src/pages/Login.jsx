@@ -14,8 +14,7 @@ function Login() {
     setErro(""); // Limpar o erro antes de validar
 
     if (localStorage.getItem("token")) {
-      setErro("Você já está logado!");
-      navigate("/dashboard");
+      localStorage.removeItem("token");
       return
     }
 
