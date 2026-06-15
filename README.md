@@ -15,6 +15,7 @@
 - CORS
 - dotenv
 - JWT
+- -BCrypt
 
 ---
 
