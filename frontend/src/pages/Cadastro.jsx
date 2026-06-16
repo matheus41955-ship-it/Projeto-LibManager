@@ -24,6 +24,10 @@ function Cadastro() {
     e.preventDefault();
     setErro(""); // Limpar o erro antes de validar
 
+    console.log("API URL:", import.meta.env.VITE_API_URL);
+    console.log("BASE URL:", api.defaults.baseURL);
+
+
     if (senha !== confSenha) {
         setErro('As senhas não conferem');
         return;
