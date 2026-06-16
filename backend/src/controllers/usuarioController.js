@@ -1,8 +1,7 @@
-const { cadastroSchema } = require('../schemas/cadastroSchema')
+const { cadastroSchema, loginSchema } = require('../schemas/usuarioSchema');
 const bcrypt = require('bcrypt');
 const usuarioModel = require('../models/usuarioModel');
 
-const { loginSchema } = require('../schemas/loginSchema')
 const jwt = require("jsonwebtoken");
 require('dotenv').config()
 
