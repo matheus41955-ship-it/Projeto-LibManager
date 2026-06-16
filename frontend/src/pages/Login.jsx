@@ -101,8 +101,6 @@ function Login() {
           </div>
 
           <div className="flex flex-col items-center justify-center text-sm text-slate-400">
-            <NavLink to="/login" className="text-blue-300 hover:text-blue-200 cursor-pointer transition">Esqueceu sua senha? <strong>Recuperar senha</strong></NavLink>
-
             <NavLink to="/cadastro" className="text-blue-300 hover:text-blue-200 cursor-pointer transition">Não possui cadastro? <strong>Fazer Cadastro</strong></NavLink>
           </div>
 
