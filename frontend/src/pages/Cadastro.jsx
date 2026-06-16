@@ -16,7 +16,8 @@ function Cadastro() {
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      navigate("/dashboard");
+      localStorage.removeItem("token");
+      return
     }
   }, []);
 
