@@ -7,7 +7,6 @@ const jwt = require("jsonwebtoken");
 require('dotenv').config()
 
 async function cadastrar(req, res) {
-    console.log("CHEGOU NO CADASTRO");
     try {
         // Validação com Zod
         const resultado = cadastroSchema.safeParse(req.body);
