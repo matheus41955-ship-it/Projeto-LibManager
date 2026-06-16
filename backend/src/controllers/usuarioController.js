@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 require('dotenv').config()
 
 async function cadastrar(req, res) {
+    console.log("CHEGOU NO CADASTRO");
     try {
         // Validação com Zod
         const resultado = cadastroSchema.safeParse(req.body);
@@ -20,7 +21,7 @@ async function cadastrar(req, res) {
         
         const usuarioExiste = await usuarioModel.buscarPorEmail(email);
         if (usuarioExiste) {
-            return res.status.json({ erro: "Email já cadastrado, faça login!" });
+            return res.status(500).json({ erro: "Email já cadastrado, faça login!" });
         }
 
         // Criptografia da senha
